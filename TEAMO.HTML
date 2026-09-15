@@ -1,0 +1,211 @@
+ <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Julieta ❤️</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Pacifico', cursive;
+      background: radial-gradient(circle at center, #2d124d 0%, #0f041c 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+    }
+
+    /* Container Principal */
+    .card-wrapper {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Botão do Coração */
+    .heart-btn {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .heart-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .heart-svg {
+      width: 100%;
+      height: 100%;
+      fill: #ff2a6d;
+      filter: drop-shadow(0 10px 25px rgba(255, 42, 109, 0.5));
+      animation: heartbeat 1.8s infinite ease-in-out;
+    }
+
+    /* Texto Centralizado Exatamente no Coração */
+    .heart-text {
+      position: absolute;
+      z-index: 2;
+      font-size: 2.2rem;
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      pointer-events: none;
+      user-select: none;
+      text-align: center;
+      width: 100%;
+      padding-bottom: 15px; /* Compensação visual da forma do coração */
+    }
+
+    /* Mensagem Revelada */
+    .message-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      width: 90vw;
+      max-width: 550px;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 10;
+    }
+
+    .message-container h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      margin-bottom: 10px;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .message-container h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: #ff7597;
+      margin-bottom: 15px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+    }
+
+    .message-container h3 {
+      font-size: 1.4rem;
+      opacity: 0.85;
+      font-weight: 400;
+    }
+
+    .btn-close {
+      position: absolute;
+      top: -40px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 1.8rem;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .btn-close:hover {
+      opacity: 1;
+    }
+
+    /* Estado Ativo (Após clicar) */
+    .card-wrapper.active .heart-btn {
+      animation: heartOut 0.6s forwards ease-in;
+      pointer-events: none;
+    }
+
+    .card-wrapper.active .message-container {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* Keyframes */
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      15% { transform: scale(1.08); }
+      30% { transform: scale(1); }
+      45% { transform: scale(1.05); }
+    }
+
+    @keyframes heartOut {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(4); opacity: 0; }
+    }
+
+    @media (max-width: 480px) {
+      .card-wrapper {
+        width: 240px;
+        height: 240px;
+      }
+      .heart-text {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-wrapper" id="cardWrapper">
+    
+    <!-- Botão com SVG do Coração -->
+    <button class="heart-btn" id="openBtn" aria-label="Abrir mensagem">
+      <svg class="heart-svg" viewBox="0 0 32 29" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,16,19.6,16,19.6s16-10.2,16-19.6C32,3.8,28.2,0,23.6,0z"/>
+      </svg>
+      <span class="heart-text">Me toca ❤️</span>
+    </button>
+
+    <!-- Mensagem Secreta -->
+    <div class="message-container">
+      <button class="btn-close" id="closeBtn" title="Recomeçar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
+      <h1>Eu te amo Julieta ❤️</h1>
+      <h2>Casa comigo? 💍</h2>
+      <h3>~ Pernilonguuhh</h3>
+    </div>
+
+  </div>
+
+  <script>
+    const cardWrapper = document.getElementById('cardWrapper');
+    const openBtn = document.getElementById('openBtn');
+    const closeBtn = document.getElementById('closeBtn');
+
+    openBtn.addEventListener('click', () => {
+      cardWrapper.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      cardWrapper.classList.remove('active');
+    });
+  </script>
+
+</body>
+</html>
