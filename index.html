@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -66,7 +66,7 @@
       animation: heartbeat 1.8s infinite ease-in-out;
     }
 
-    /* Texto Centralizado Exatamente no Coração */
+    /* Texto no coração */
     .heart-text {
       position: absolute;
       z-index: 2;
@@ -77,7 +77,7 @@
       user-select: none;
       text-align: center;
       width: 100%;
-      padding-bottom: 15px; /* Compensação visual da forma do coração */
+      padding-bottom: 15px;
     }
 
     /* Mensagem Revelada */
@@ -115,6 +115,7 @@
       font-weight: 400;
     }
 
+    /* Botão fechar */
     .btn-close {
       position: absolute;
       top: -40px;
@@ -132,7 +133,46 @@
       opacity: 1;
     }
 
-    /* Estado Ativo (Após clicar) */
+    /* ============================
+       BOTÃO DETALHES
+       ============================ */
+
+    .btn-detalhes {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+
+      z-index: 9999;
+
+      padding: 14px 28px;
+
+      border: none;
+      border-radius: 30px;
+
+      background: rgba(255, 42, 109, 0.95);
+      color: #ffffff;
+
+      font-family: 'Poppins', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+
+      cursor: pointer;
+
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+
+      transition: all 0.3s ease;
+    }
+
+    .btn-detalhes:hover {
+      transform: translateY(-4px) scale(1.06);
+
+      background: #ff2a6d;
+
+      box-shadow:
+        0 10px 30px rgba(255, 42, 109, 0.5);
+    }
+
+    /* Estado ativo */
     .card-wrapper.active .heart-btn {
       animation: heartOut 0.6s forwards ease-in;
       pointer-events: none;
@@ -144,67 +184,168 @@
       transform: translate(-50%, -50%) scale(1);
     }
 
-    /* Keyframes */
+    /* Animação do coração */
     @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      15% { transform: scale(1.08); }
-      30% { transform: scale(1); }
-      45% { transform: scale(1.05); }
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      15% {
+        transform: scale(1.08);
+      }
+
+      30% {
+        transform: scale(1);
+      }
+
+      45% {
+        transform: scale(1.05);
+      }
     }
 
+    /* Saída do coração */
     @keyframes heartOut {
-      0% { transform: scale(1); opacity: 1; }
-      100% { transform: scale(4); opacity: 0; }
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(4);
+        opacity: 0;
+      }
     }
+
+    /* ============================
+       CELULAR
+       ============================ */
 
     @media (max-width: 480px) {
+
       .card-wrapper {
         width: 240px;
         height: 240px;
       }
+
       .heart-text {
         font-size: 1.8rem;
+      }
+
+      .btn-detalhes {
+        right: 15px;
+        bottom: 15px;
+
+        padding: 12px 23px;
+
+        font-size: 15px;
       }
     }
   </style>
 </head>
+
 <body>
 
+  <!-- ============================
+       CORAÇÃO
+       ============================ -->
+
   <div class="card-wrapper" id="cardWrapper">
-    
-    <!-- Botão com SVG do Coração -->
-    <button class="heart-btn" id="openBtn" aria-label="Abrir mensagem">
-      <svg class="heart-svg" viewBox="0 0 32 29" xmlns="http://www.w3.org/2000/svg">
+
+    <button
+      class="heart-btn"
+      id="openBtn"
+      aria-label="Abrir mensagem">
+
+      <svg
+        class="heart-svg"
+        viewBox="0 0 32 29"
+        xmlns="http://www.w3.org/2000/svg">
+
         <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,16,19.6,16,19.6s16-10.2,16-19.6C32,3.8,28.2,0,23.6,0z"/>
+
       </svg>
-      <span class="heart-text">Me toca ❤️</span>
+
+      <span class="heart-text">
+        Me toca ❤️
+      </span>
+
     </button>
 
-    <!-- Mensagem Secreta -->
+
+    <!-- ============================
+         MENSAGEM
+         ============================ -->
+
     <div class="message-container">
-      <button class="btn-close" id="closeBtn" title="Recomeçar">
+
+      <button
+        class="btn-close"
+        id="closeBtn"
+        title="Recomeçar">
+
         <i class="fa-solid fa-xmark"></i>
+
       </button>
-      
-      <h1>Eu te amo Julieta ❤️</h1>
-      <h2>Casa comigo? 💍</h2>
-      <h3>~ Pernilonguuhh</h3>
+
+      <h1>
+        Eu te amo Julieta ❤️
+      </h1>
+
+      <h2>
+        Casa comigo? 💍
+      </h2>
+
+      <h3>
+        ~ Pernilonguuhh
+      </h3>
+
     </div>
 
   </div>
 
+
+  <!-- ============================
+       BOTÃO DETALHES
+       ============================ -->
+
+  <button
+    class="btn-detalhes"
+    onclick="window.location.href='https://julianavier06710-cmd.github.io/tim-amuuuhhh2/'">
+
+    Detalhes
+
+  </button>
+
+
+  <!-- ============================
+       JAVASCRIPT
+       ============================ -->
+
   <script>
-    const cardWrapper = document.getElementById('cardWrapper');
-    const openBtn = document.getElementById('openBtn');
-    const closeBtn = document.getElementById('closeBtn');
+
+    const cardWrapper =
+      document.getElementById('cardWrapper');
+
+    const openBtn =
+      document.getElementById('openBtn');
+
+    const closeBtn =
+      document.getElementById('closeBtn');
+
 
     openBtn.addEventListener('click', () => {
+
       cardWrapper.classList.add('active');
+
     });
 
+
     closeBtn.addEventListener('click', () => {
+
       cardWrapper.classList.remove('active');
+
     });
+
   </script>
 
 </body>
